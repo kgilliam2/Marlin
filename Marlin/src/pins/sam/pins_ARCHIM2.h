@@ -204,7 +204,6 @@
   #define FAN_PIN                              4  // D4 PC26 FET_PWM1
 #endif
 #define FAN1_PIN                               5  // D5 PC25 FET_PWM2
-
 //
 // Misc. Functions
 //
