@@ -253,7 +253,7 @@
   #undef  FAN1_PIN
   #define ELECTROMAGNETIC_BRAKE_PIN            8  // D8 PC22 FET_PWM5 ("HTR3" header)
 #endif
-
+#define FAN1_PIN                               5  // D5 PC25 FET_PWM2
 //
 // Misc. Functions
 //
