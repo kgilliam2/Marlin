@@ -308,7 +308,7 @@
 #endif
 
 //
-// LCD / Controller
+// LCD / Controller On SC1
 //
 #if ANY(HAS_WIRED_LCD, TOUCH_UI_ULTIPANEL, TOUCH_UI_FTDI_EVE)
   #define BEEPER_PIN                          23  // D24 PA15_CTS1
@@ -324,7 +324,7 @@
 
 #if ANY(IS_ULTIPANEL, TOUCH_UI_ULTIPANEL, TOUCH_UI_FTDI_EVE)
   // Buttons on AUX-2
-  #define BTN_EN1                             60  // D60 PA3_TIOB1
-  #define BTN_EN2                             13  // D13 PB27_TIOB0
+  #define BTN_EN1                             13  // D13 PB27_TIOB0
+  #define BTN_EN2                             60  // D60 PA3_TIOB1
   #define BTN_ENC                             16  // D16 PA13_TXD1 // the click
 #endif

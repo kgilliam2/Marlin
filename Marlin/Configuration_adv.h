@@ -502,7 +502,7 @@
   #define CONTROLLER_FAN_PIN FAN1_PIN        // Set a custom pin for the controller fan
   //#define CONTROLLER_FAN_USE_Z_ONLY    // With this option only the Z axis is considered
   //#define CONTROLLER_FAN_IGNORE_Z      // Ignore Z stepper. Useful when stepper timeout is disabled.
-  #define CONTROLLERFAN_SPEED_MIN      0 // (0-255) Minimum speed. (If set below this value the fan is turned off.)
+  #define CONTROLLERFAN_SPEED_MIN      60 // (0-255) Minimum speed. (If set below this value the fan is turned off.)
   #define CONTROLLERFAN_SPEED_ACTIVE 130 // (0-255) Active speed, used when any motor is enabled
   #define CONTROLLERFAN_SPEED_IDLE     0 // (0-255) Idle speed, used when motors are disabled
   #define CONTROLLERFAN_IDLE_TIME     60 // (seconds) Extra time to keep the fan running after disabling motors
@@ -678,6 +678,7 @@
   #endif
 #endif
 
+
 // @section homing
 
 // If you want endstops to stay on (by default) even when not homing
@@ -693,6 +694,62 @@
 #if ENABLED(EXTERNAL_CLOSED_LOOP_CONTROLLER)
   //#define CLOSED_LOOP_ENABLE_PIN        -1
   //#define CLOSED_LOOP_MOVE_COMPLETE_PIN -1
+#endif
+
+/**
+ * Dual Steppers / Dual Endstops
+ *
+ * This section will allow you to use extra E drivers to drive a second motor for X, Y, or Z axes.
+ *
+ * For example, set X_DUAL_STEPPER_DRIVERS setting to use a second motor. If the motors need to
+ * spin in opposite directions set INVERT_X2_VS_X_DIR. If the second motor needs its own endstop
+ * set X_DUAL_ENDSTOPS. This can adjust for "racking." Use X2_USE_ENDSTOP to set the endstop plug
+ * that should be used for the second endstop. Extra endstops will appear in the output of 'M119'.
+ *
+ * Use X_DUAL_ENDSTOP_ADJUSTMENT to adjust for mechanical imperfection. After homing both motors
+ * this offset is applied to the X2 motor. To find the offset home the X axis, and measure the error
+ * in X2. Dual endstop offsets can be set at runtime with 'M666 X<offset> Y<offset> Z<offset>'.
+ */
+
+//#define X_DUAL_STEPPER_DRIVERS
+#if ENABLED(X_DUAL_STEPPER_DRIVERS)
+  #define INVERT_X2_VS_X_DIR true   // Set 'true' if X motors should rotate in opposite directions
+  //#define X_DUAL_ENDSTOPS
+  #if ENABLED(X_DUAL_ENDSTOPS)
+    #define X2_USE_ENDSTOP _XMAX_
+    #define X2_ENDSTOP_ADJUSTMENT  0
+  #endif
+#endif
+
+//#define Y_DUAL_STEPPER_DRIVERS
+#if ENABLED(Y_DUAL_STEPPER_DRIVERS)
+  #define INVERT_Y2_VS_Y_DIR true   // Set 'true' if Y motors should rotate in opposite directions
+  //#define Y_DUAL_ENDSTOPS
+  #if ENABLED(Y_DUAL_ENDSTOPS)
+    #define Y2_USE_ENDSTOP _YMAX_
+    #define Y2_ENDSTOP_ADJUSTMENT  0
+  #endif
+#endif
+
+//
+// For Z set the number of stepper drivers
+//
+#define NUM_Z_STEPPER_DRIVERS 2   // (1-4) Z options change based on how many
+
+#if NUM_Z_STEPPER_DRIVERS > 1
+  //#define Z_MULTI_ENDSTOPS
+  #if ENABLED(Z_MULTI_ENDSTOPS)
+    #define Z2_USE_ENDSTOP          _XMAX_
+    #define Z2_ENDSTOP_ADJUSTMENT   0
+    #if NUM_Z_STEPPER_DRIVERS >= 3
+      #define Z3_USE_ENDSTOP        _YMAX_
+      #define Z3_ENDSTOP_ADJUSTMENT 0
+    #endif
+    #if NUM_Z_STEPPER_DRIVERS >= 4
+      #define Z4_USE_ENDSTOP        _ZMAX_
+      #define Z4_ENDSTOP_ADJUSTMENT 0
+    #endif
+  #endif
 #endif
 
 /**
@@ -1469,7 +1526,7 @@
    * an option on the LCD screen to continue the print from the last-known
    * point in the file.
    */
-  //#define POWER_LOSS_RECOVERY
+  #define POWER_LOSS_RECOVERY
   #if ENABLED(POWER_LOSS_RECOVERY)
     #define PLR_ENABLED_DEFAULT   false // Power Loss Recovery enabled by default. (Set with 'M413 Sn' & M500)
     //#define BACKUP_POWER_SUPPLY       // Backup power / UPS to move the steppers on power loss
