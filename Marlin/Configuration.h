@@ -1066,7 +1066,36 @@
  * total number of extruders, the last value applies to the rest.
  */
 //#define DISTINCT_E_FACTORS
+#if 0
+#define STEPS_PER_REVOLUTION_X 3200
+#define STEPS_PER_REVOLUTION_Z 3200
+#define STEPS_PER_REVOLUTION_E 3200
+#define STEPS_PER_REVOLUTION_Y 6400
 
+#define IDLER_TEETH_X 8
+#define IDLER_TEETH_Y 8
+
+
+#define BELT_PITCH_X 2
+#define BELT_PITCH_Y 2
+
+#define PITCH_OF_Z_ROD 1.25
+
+// makergear extruder box
+#define EXTRUDER_GEAR_RATIO 13.0
+
+#define PINCH_WHEEL_DIAMETER 11.59
+
+#define AXIS_STEPS_PER_UNIT_X (STEPS_PER_REVOLUTION_X / IDLER_TEETH_X / BELT_PITCH_X)
+
+#define AXIS_STEPS_PER_UNIT_Y (STEPS_PER_REVOLUTION_Y / IDLER_TEETH_Y / BELT_PITCH_Y)
+
+#define AXIS_STEPS_PER_UNIT_Z (STEPS_PER_REVOLUTION_Z / PITCH_OF_Z_ROD)
+
+#define AXIS_STEPS_PER_UNIT_E (STEPS_PER_REVOLUTION_E * EXTRUDER_GEAR_RATIO / (PINCH_WHEEL_DIAMETER * PI))
+
+#define DEFAULT_AXIS_STEPS_PER_UNIT {AXIS_STEPS_PER_UNIT_X, AXIS_STEPS_PER_UNIT_Y, AXIS_STEPS_PER_UNIT_Z, AXIS_STEPS_PER_UNIT_E}
+#endif
 /**
  * Default Axis Steps Per Unit (linear=steps/mm, rotational=steps/°)
  * Override with M92
@@ -1108,7 +1137,7 @@
  *   M204 T    Travel Acceleration
  */
 #define DEFAULT_ACCELERATION          500    // X, Y, Z and E acceleration for printing moves
-#define DEFAULT_RETRACT_ACCELERATION  1000   // E acceleration for retracts
+#define DEFAULT_RETRACT_ACCELERATION  2000   // E acceleration for retracts
 #define DEFAULT_TRAVEL_ACCELERATION   3000   // X, Y, Z acceleration for travel (non printing) moves
 
 /**
@@ -1133,7 +1162,7 @@
   #endif
 #endif
 
-#define DEFAULT_EJERK    10.0  // May be used by Linear Advance
+#define DEFAULT_EJERK    6.0  // May be used by Linear Advance
 
 /**
  * Junction Deviation Factor
@@ -1143,7 +1172,7 @@
  *   https://blog.kyneticcnc.com/2018/10/computing-junction-deviation-for-marlin.html
  */
 #if DISABLED(CLASSIC_JERK)
-  #define JUNCTION_DEVIATION_MM 0.013 // (mm) Distance from real junction edge
+  #define JUNCTION_DEVIATION_MM 0.02 // (mm) Distance from real junction edge
   #define JD_HANDLE_SMALL_SEGMENTS    // Use curvature estimation instead of just the junction angle
                                       // for small segments (< 1mm) with large junction angles (> 135°).
 #endif
