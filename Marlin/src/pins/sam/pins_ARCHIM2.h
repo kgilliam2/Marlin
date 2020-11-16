@@ -141,7 +141,7 @@
 #define E1_DIR_PIN                            97  // PB24 E2_DIR -AddOns *
 #define E1_ENABLE_PIN                         18  // PA11 E2-EN
 #ifndef E1_CS_PIN
-#define E1_CS_PIN                             19  // PA10 E2_nCS
+ #define E1_CS_PIN                             19  // PA10 E2_nCS
 #endif
 
 #if NUM_Z_STEPPER_DRIVERS == 2
@@ -204,6 +204,7 @@
   #define FAN_PIN                              4  // D4 PC26 FET_PWM1
 #endif
 #define FAN1_PIN                               5  // D5 PC25 FET_PWM2
+
 //
 // Misc. Functions
 //
@@ -237,6 +238,8 @@
 #define GPIO_PA18_J20_21                      71  // D71 PA17 (Header J20 21)
 #define GPIO_PA17_J20_22                      70  // D70 PA17 (Header J20 22)
 
+
+#define E_FAN_PIN GPIO_PB9_J20_13
 // Case Light
 
 #ifndef CASE_LIGHT_PIN
