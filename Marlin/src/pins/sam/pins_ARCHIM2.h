@@ -288,8 +288,6 @@
 #define GPIO_PA18_J20_21                      71  // D71 PA17 (Header J20 21)
 #define GPIO_PA17_J20_22                      70  // D70 PA17 (Header J20 22)
 
-
-#define E_FAN_PIN GPIO_PB9_J20_13
 // Case Light
 
 #ifndef CASE_LIGHT_PIN
