@@ -141,7 +141,7 @@
 #define E1_DIR_PIN                            97  // PB24 E2_DIR -AddOns *
 #define E1_ENABLE_PIN                         18  // PA11 E2-EN
 #ifndef E1_CS_PIN
-#define E1_CS_PIN                             19  // PA10 E2_nCS
+ #define E1_CS_PIN                             19  // PA10 E2_nCS
 #endif
 
 #if NUM_Z_STEPPER_DRIVERS == 2
@@ -204,6 +204,7 @@
   #define FAN_PIN                              4  // D4 PC26 FET_PWM1
 #endif
 #define FAN1_PIN                               5  // D5 PC25 FET_PWM2
+
 //
 // Misc. Functions
 //
