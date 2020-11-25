@@ -677,9 +677,13 @@
     // #define DEFAULT_Kd 114.00
 
     // AO-Hexagon (24V)
-    #define  DEFAULT_Kp 28.79
-    #define  DEFAULT_Ki 1.91
-    #define  DEFAULT_Kd 108.51
+    // #define  DEFAULT_Kp 28.79
+    // #define  DEFAULT_Ki 1.91
+    // #define  DEFAULT_Kd 108.51
+
+    #define DEFAULT_Kp 28.20
+    #define DEFAULT_Ki 1.61
+    #define DEFAULT_Kd 123.50
   #endif
 #endif
 
@@ -764,10 +768,12 @@
   // #define DEFAULT_bedKi .023
   // #define DEFAULT_bedKd 305.4
 //24V 360W silicone heater from NPH on 3mm borosilicate (TAZ 2.2+)
-    #define  DEFAULT_bedKp 162
-    #define  DEFAULT_bedKi 17
-    #define  DEFAULT_bedKd 378
-
+    // #define  DEFAULT_bedKp 162
+    // #define  DEFAULT_bedKi 17
+    // #define  DEFAULT_bedKd 378
+#define DEFAULT_bedKp 70.38
+#define DEFAULT_bedKi 9.67
+#define DEFAULT_bedKd 341.56
   // FIND YOUR OWN: "M303 E-1 C8 S90" to run autotune on the bed at 90 degreesC for 8 cycles.
 #endif // PIDTEMPBED
 
@@ -1122,7 +1128,7 @@
  *   M204 R    Retract Acceleration
  *   M204 T    Travel Acceleration
  */
-#define DEFAULT_ACCELERATION          800    // X, Y, Z and E acceleration for printing moves
+#define DEFAULT_ACCELERATION          500    // X, Y, Z and E acceleration for printing moves
 #define DEFAULT_RETRACT_ACCELERATION  1000   // E acceleration for retracts
 #define DEFAULT_TRAVEL_ACCELERATION   1000   // X, Y, Z acceleration for travel (non printing) moves
 
