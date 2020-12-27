@@ -1,8 +1,70 @@
-#warning YES THIS IS INCLUDED
-#warning YES THIS IS INCLUDED
-#warning YES THIS IS INCLUDED
-#warning YES THIS IS INCLUDED
-#warning YES THIS IS INCLUDED
-#warning YES THIS IS INCLUDED
-#warning YES THIS IS INCLUDED
-#warning YES THIS IS INCLUDED
+#include "src/core/macros.h"
+
+#define TAZX_HEX_DIRECT   1
+#define TAZX_E3DV6_BOWDEN 2
+#define TAZX_MOAR_DIRECT  3
+
+#define TAZ_X_CURRENT_CFG TAZX_E3DV6_BOWDEN
+
+#define BOWDEN true
+#define DIRECT false
+
+#if ( (TAZ_X_CURRENT_CFG == TAZX_HEX_DIRECT) || \
+      (TAZ_X_CURRENT_CFG == TAZX_MOAR_DIRECT) )
+    #define IS_BOWDEN false
+#elif (TAZ_X_CURRENT_CFG == TAZX_E3DV6_BOWDEN)
+    #define IS_BOWDEN true
+#endif
+
+#if IS_BOWDEN
+    #define TAZX_E0_INVERT true
+#else
+    #define TAZX_E0_INVERT false
+#endif
+/* Machine Name String */
+#if (TAZ_X_CURRENT_CFG == TAZX_HEX_DIRECT)
+    #define TAZX_MACHINE_NAME STRINGIFY_ (TAZX_HEX_DIRECT)
+#elif (TAZ_X_CURRENT_CFG == TAZX_E3DV6_BOWDEN)
+    #define TAZX_MACHINE_NAME STRINGIFY_ (TAZX_E3DV6_BOWDEN)
+#endif
+
+/* Hotend max temp */
+#define HEXAGON_MAX_TEMP 305
+#define E3DV6_MAX_TEMP   285
+
+#if (TAZ_X_CURRENT_CFG == TAZX_HEX_DIRECT)
+    #define TAZX_HOTEND_MAXTEMP HEXAGON_MAX_TEMP
+#elif (TAZ_X_CURRENT_CFG == TAZX_E3DV6_BOWDEN)
+    #define TAZX_HOTEND_MAXTEMP E3DV6_MAX_TEMP
+#endif
+
+//#define DEFAULT_AXIS_STEPS_PER_UNIT   {100.5,100.5,1600,}
+
+/* E Steps per mm*/
+#define HEXAGON_E_STEPS_PER_UNIT 761.48
+#define E3DV6_E_STEPS_PER_UNIT   285
+
+#if (TAZ_X_CURRENT_CFG == TAZX_HEX_DIRECT)
+    #define TAZX_E_STEPS_PER_UNIT HEXAGON_E_STEPS_PER_UNIT
+#elif (TAZ_X_CURRENT_CFG == TAZX_E3DV6_BOWDEN)
+    #define TAZX_E_STEPS_PER_UNIT E3DV6_E_STEPS_PER_UNIT
+#endif
+
+/* Hotend PID gains */
+#define HEXAGON_Kp 28.20
+#define HEXAGON_Ki 1.61
+#define HEXAGON_Kd 123.50
+
+#define E3DV6_Kp 28.20
+#define E3DV6_Ki 1.61
+#define E3DV6_Kd 123.50
+
+#if (TAZ_X_CURRENT_CFG == TAZX_HEX_DIRECT)
+    #define TAZX_HOTEND_Kp HEXAGON_Kp
+    #define TAZX_HOTEND_Ki HEXAGON_Ki
+    #define TAZX_HOTEND_Kd HEXAGON_Kd
+#elif (TAZ_X_CURRENT_CFG == TAZX_E3DV6_BOWDEN)
+    #define TAZX_HOTEND_Kp E3DV6_Kp
+    #define TAZX_HOTEND_Ki E3DV6_Ki
+    #define TAZX_HOTEND_Kd E3DV6_Kd
+#endif
