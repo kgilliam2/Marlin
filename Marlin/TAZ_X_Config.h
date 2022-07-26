@@ -1,5 +1,6 @@
 #include "src/core/macros.h"
 
+//NOTE: This repo is based on drunken octopus MASTER!!! Not bugfix.
 #define TAZX_HEX_DIRECT   1
 #define TAZX_E3DV6_BOWDEN 2
 #define TAZX_MOAR_DIRECT  3
@@ -9,6 +10,8 @@
 #define BOWDEN true
 #define DIRECT false
 
+
+
 #if ( (TAZ_X_CURRENT_CFG == TAZX_HEX_DIRECT) || \
       (TAZ_X_CURRENT_CFG == TAZX_MOAR_DIRECT) )
     #define IS_BOWDEN false
@@ -17,16 +20,33 @@
 #endif
 
 #if IS_BOWDEN
-    #define TAZX_E0_INVERT true
+    #define TAZX_E0_INVERT false//true
+    #define EXT_GEAR_RATIO 5.18
 #else
     #define TAZX_E0_INVERT false
+    #define EXT_GEAR_RATIO 1
 #endif
+
+#define E0_FEEDRATE (unsigned int)( 68 * EXT_GEAR_RATIO ) //was 60 7/26/22
+
+
 /* Machine Name String */
 #if (TAZ_X_CURRENT_CFG == TAZX_HEX_DIRECT)
     #define TAZX_MACHINE_NAME STRINGIFY_ (TAZX_HEX_DIRECT)
 #elif (TAZ_X_CURRENT_CFG == TAZX_E3DV6_BOWDEN)
     #define TAZX_MACHINE_NAME STRINGIFY_ (TAZX_E3DV6_BOWDEN)
 #endif
+
+/* Extruder motor current */
+#define BONDTECH_QR_EXT_CURR 1200
+#define DIRECT_EXT_CURR
+
+#if (TAZ_X_CURRENT_CFG == TAZX_HEX_DIRECT)
+    #define TAZX_E0_CURR  DIRECT_EXT_CURR
+#elif (TAZ_X_CURRENT_CFG == TAZX_E3DV6_BOWDEN)
+    #define TAZX_E0_CURR BONDTECH_QR_EXT_CURR
+#endif
+
 
 /* Hotend max temp */
 #define HEXAGON_MAX_TEMP 305
@@ -42,7 +62,7 @@
 
 /* E Steps per mm*/
 #define HEXAGON_E_STEPS_PER_UNIT 761.48
-#define E3DV6_E_STEPS_PER_UNIT   285
+#define E3DV6_E_STEPS_PER_UNIT   492.45
 
 #if (TAZ_X_CURRENT_CFG == TAZX_HEX_DIRECT)
     #define TAZX_E_STEPS_PER_UNIT HEXAGON_E_STEPS_PER_UNIT
