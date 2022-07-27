@@ -27,7 +27,7 @@
     #define EXT_GEAR_RATIO 1
 #endif
 
-#define E0_FEEDRATE (unsigned int)( 68 * EXT_GEAR_RATIO ) //was 60 7/26/22
+#define E0_FEEDRATE (unsigned int)( 60 * EXT_GEAR_RATIO ) //was 60 7/26/22
 
 
 /* Machine Name String */
