@@ -27,7 +27,7 @@
     #define EXT_GEAR_RATIO 1
 #endif
 
-#define E0_FEEDRATE (unsigned int)( 68 * EXT_GEAR_RATIO ) //was 60 7/26/22
+#define E0_FEEDRATE (unsigned int)( 60 * EXT_GEAR_RATIO ) //was 60 7/26/22
 
 
 /* Machine Name String */
@@ -62,12 +62,12 @@
 
 /* E Steps per mm*/
 #define HEXAGON_E_STEPS_PER_UNIT 761.48
-#define E3DV6_E_STEPS_PER_UNIT   492.45
+#define BONDTECH_BOWDEN_E_STEPS_PER_UNIT   492.45 //For 2.85mm filament
 
 #if (TAZ_X_CURRENT_CFG == TAZX_HEX_DIRECT)
     #define TAZX_E_STEPS_PER_UNIT HEXAGON_E_STEPS_PER_UNIT
 #elif (TAZ_X_CURRENT_CFG == TAZX_E3DV6_BOWDEN)
-    #define TAZX_E_STEPS_PER_UNIT E3DV6_E_STEPS_PER_UNIT
+    #define TAZX_E_STEPS_PER_UNIT BONDTECH_BOWDEN_E_STEPS_PER_UNIT
 #endif
 
 /* Hotend PID gains */
@@ -88,3 +88,8 @@
     #define TAZX_HOTEND_Ki E3DV6_Ki
     #define TAZX_HOTEND_Kd E3DV6_Kd
 #endif
+
+
+// Homing speeds (mm/min)
+#define HOMING_FEEDRATE_XY (50*60)
+#define HOMING_FEEDRATE_Z  (6*60)
